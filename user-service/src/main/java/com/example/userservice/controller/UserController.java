@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserRepository repo;
-
+    @Autowired
+    private RestTemplate restTemplate;
     @PostMapping("/add")
     public ResponseEntity<User> saveUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
@@ -55,5 +57,12 @@ public class UserController {
         @DeleteMapping("/{id}")
                 public String deleteD(@PathVariable Long id){
         return userService.deleteD(id);
+    }
+    @PostMapping("/addsome")
+    public ResponseEntity<Department>rew(@RequestBody Department department)
+    {
+        String a="http://localhost:9002/department/add";
+        ResponseEntity<Department> dett=restTemplate.postForEntity(a,department,Department.class);
+        return ResponseEntity.ok(dett.getBody());
     }
 }

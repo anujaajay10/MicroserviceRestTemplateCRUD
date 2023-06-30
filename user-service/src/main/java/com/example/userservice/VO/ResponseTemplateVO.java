@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResponseTemplateVO {
+public class ResponseTemplateVO
+{
     private User user;
     private Department department;
 }

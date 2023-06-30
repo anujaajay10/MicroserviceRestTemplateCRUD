@@ -20,6 +20,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
     public ResponseTemplateVO getUser(Long userId){
         ResponseTemplateVO vo=new ResponseTemplateVO();
         User user=userRepository.findByUserId(userId);
@@ -42,14 +43,11 @@ public class UserService {
     public Department updateD(Long departmentId, Department department) {
         restTemplate.put("http://localhost:9002/department/update/{id}",department,departmentId,Department.class);
         department.setDepartmentId(departmentId);
-
-
-
         return department;
     }
 
     public String deleteD(Long id) {
         restTemplate.delete("http://localhost:9002/department/{id}",id,Department.class);
-        return "neyetha";
+        return "The department is successfully deleted";
     }
 }
